@@ -1,0 +1,11 @@
+# These comments must not be deleted! They are used by graphql-import, a tool that lets you import SDL types across files which is not possible with standard SDL (yet!).
+# import * from './generated/prisma.graphql'
+
+#scalar Upload
+
+scalar DateTime
+
+type Query {
+  laws: [Law!]!
+  #laws(where: LawWhereInput, skip: Int, first: Int, orderBy: LawOrderByInput): [Law!]! 
+}

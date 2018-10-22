@@ -1,0 +1,25 @@
+# this can be an environment variabel OR the endpoint from the initial prisma init/deploy
+endpoint:  "http://localhost:4466"
+
+datamodel: 
+  - types.graphql
+  - enums.graphql
+
+generate:
+  - generator: typescript-client
+    output: ../src/generated/prisma-client/
+ 
+
+hooks:
+  post-deploy:
+    # generate prisma client
+    - prisma generate    
+    # fetch prisma schema for graphql (yoga) server
+    # NOR ALWAYS WORKIGN https://github.com/prisma/prisma/issues/2494
+    - graphql get-schema --project prisma
+    # - graphql codegen
+
+# https://www.prisma.io/docs/prisma-graphql-api/reference/authentication-ghd4/
+secret: penis
+
+  

@@ -1,0 +1,41 @@
+
+type Law  {
+  #additionalFiles: [File!]! @relation(name: "FilesOnLaw")
+  altTitle: String
+  altSlug: String
+  # cites: [CitationRelation!]! @relation(name: "FromLaw")
+  # citedBy: [CitationRelation!]! @relation(name: "ToLaw")
+  #contentFiles: [File!]! @relation(name: "ContentFileOnLaw")
+  #contentFilesOriginal: [File!]! @relation(name: "ContentFileOriginalOnLaw")
+  createdAt: DateTime!
+  historic: Boolean!
+  id: ID! @unique
+  indexedAt: DateTime
+  isSearchable: Boolean! @default(value: true)
+  justiceSystem: JusticeSystemEnum!
+  language: LanguageEnum!
+  #changedBy: [LawChangeRelation!]! @relation(name: "LawChangedByOnLaw")
+  #changes: [LawChangeRelation!]! @relation(name: "LawChangesOnLaw")
+  #lawChanges: [LawChange!]! @relation(name: "LawOnLawChange")
+  # lawReplacedByLaw: Law @relation(name: "LawVersionLaw")
+  # lawReplacesLaw: Law @relation(name: "LawVersionLaw")
+  lawBasedOnLaw: [Law!]! @relation(name: "LawIsBasedOnLaw")
+  lawIsBaseForLaw: [Law!]! @relation(name: "LawIsBasedOnLaw")
+  lawType: LawType
+  linkedAt: DateTime
+  ministry: String
+  permalink: String
+  #previews: [Preview!]! @relation(name: "PreviewsOnLaw")
+  publicationDate: DateTime
+  published: Boolean!
+  scrapedAt: DateTime
+  shortName: String! @unique
+  slug: String! @unique
+  title: String!
+  uid: String! @unique
+  updatedAt: DateTime!
+  url: String! @unique
+}
+
+
+
