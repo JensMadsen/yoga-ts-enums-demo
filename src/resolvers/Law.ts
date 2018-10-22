@@ -5,8 +5,4 @@ import { LawResolvers } from '../generated/graphqlgen'
 
 export const Law: LawResolvers.Type = {
   ...LawResolvers.defaultResolvers,
-
-  lawChanges: (parent, args) => {
-    throw new Error('Resolver not implemented')
-  },
 }

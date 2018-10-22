@@ -5,6 +5,6 @@ import { QueryResolvers } from '../generated/graphqlgen'
 
 export const Query: QueryResolvers.Type = {
   ...QueryResolvers.defaultResolvers,
-  law: (parent, args) => null,
-  laws: (parent, args, ctx) => ctx.db.laws({where: args.where})
+
+  laws: (parent, args, ctx) => ctx.db.laws()
 }
