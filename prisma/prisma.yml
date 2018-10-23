@@ -8,17 +8,14 @@ datamodel:
 generate:
   - generator: typescript-client
     output: ../src/generated/prisma-client/
+  # replaces - graphql get-schema --project prisma
   - generator: graphql-schema
     output: ../src/generated/
 
 hooks:
   post-deploy:
     # generate prisma client
-    - prisma generate
-    # fetch prisma schema for graphql (yoga) server
-    # NOR ALWAYS WORKIGN https://github.com/prisma/prisma/issues/2494
-    - graphql get-schema --project prisma
-    # - graphql codegen
+    - prisma generate    
 
-# https://www.prisma.io/docs/prisma-graphql-api/reference/authentication-ghd4/
+# see: https://www.prisma.io/docs/prisma-graphql-api/reference/authentication-ghd4/
 secret: penis
