@@ -1,0 +1,616 @@
+export const typeDefs = /* GraphQL */ `type AggregateLaw {
+  count: Int!
+}
+
+type BatchPayload {
+  count: Long!
+}
+
+scalar DateTime
+
+enum JusticeSystemEnum {
+  DK
+  ECHR
+  EU
+}
+
+enum LanguageEnum {
+  DA
+  EN
+}
+
+type Law {
+  altTitle: String
+  altSlug: String
+  createdAt: DateTime!
+  historic: Boolean!
+  id: ID!
+  indexedAt: DateTime
+  isSearchable: Boolean!
+  justiceSystem: JusticeSystemEnum!
+  language: LanguageEnum!
+  lawBasedOnLaw(where: LawWhereInput, orderBy: LawOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Law!]
+  lawIsBaseForLaw(where: LawWhereInput, orderBy: LawOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Law!]
+  lawType: LawType
+  linkedAt: DateTime
+  ministry: String
+  permalink: String
+  publicationDate: DateTime
+  published: Boolean!
+  scrapedAt: DateTime
+  shortName: String!
+  slug: String!
+  title: String!
+  uid: String!
+  updatedAt: DateTime!
+  url: String!
+}
+
+type LawConnection {
+  pageInfo: PageInfo!
+  edges: [LawEdge]!
+  aggregate: AggregateLaw!
+}
+
+input LawCreateInput {
+  altTitle: String
+  altSlug: String
+  historic: Boolean!
+  indexedAt: DateTime
+  isSearchable: Boolean
+  justiceSystem: JusticeSystemEnum!
+  language: LanguageEnum!
+  lawBasedOnLaw: LawCreateManyWithoutLawIsBaseForLawInput
+  lawIsBaseForLaw: LawCreateManyWithoutLawBasedOnLawInput
+  lawType: LawType
+  linkedAt: DateTime
+  ministry: String
+  permalink: String
+  publicationDate: DateTime
+  published: Boolean!
+  scrapedAt: DateTime
+  shortName: String!
+  slug: String!
+  title: String!
+  uid: String!
+  url: String!
+}
+
+input LawCreateManyWithoutLawBasedOnLawInput {
+  create: [LawCreateWithoutLawBasedOnLawInput!]
+  connect: [LawWhereUniqueInput!]
+}
+
+input LawCreateManyWithoutLawIsBaseForLawInput {
+  create: [LawCreateWithoutLawIsBaseForLawInput!]
+  connect: [LawWhereUniqueInput!]
+}
+
+input LawCreateWithoutLawBasedOnLawInput {
+  altTitle: String
+  altSlug: String
+  historic: Boolean!
+  indexedAt: DateTime
+  isSearchable: Boolean
+  justiceSystem: JusticeSystemEnum!
+  language: LanguageEnum!
+  lawIsBaseForLaw: LawCreateManyWithoutLawBasedOnLawInput
+  lawType: LawType
+  linkedAt: DateTime
+  ministry: String
+  permalink: String
+  publicationDate: DateTime
+  published: Boolean!
+  scrapedAt: DateTime
+  shortName: String!
+  slug: String!
+  title: String!
+  uid: String!
+  url: String!
+}
+
+input LawCreateWithoutLawIsBaseForLawInput {
+  altTitle: String
+  altSlug: String
+  historic: Boolean!
+  indexedAt: DateTime
+  isSearchable: Boolean
+  justiceSystem: JusticeSystemEnum!
+  language: LanguageEnum!
+  lawBasedOnLaw: LawCreateManyWithoutLawIsBaseForLawInput
+  lawType: LawType
+  linkedAt: DateTime
+  ministry: String
+  permalink: String
+  publicationDate: DateTime
+  published: Boolean!
+  scrapedAt: DateTime
+  shortName: String!
+  slug: String!
+  title: String!
+  uid: String!
+  url: String!
+}
+
+type LawEdge {
+  node: Law!
+  cursor: String!
+}
+
+enum LawOrderByInput {
+  altTitle_ASC
+  altTitle_DESC
+  altSlug_ASC
+  altSlug_DESC
+  createdAt_ASC
+  createdAt_DESC
+  historic_ASC
+  historic_DESC
+  id_ASC
+  id_DESC
+  indexedAt_ASC
+  indexedAt_DESC
+  isSearchable_ASC
+  isSearchable_DESC
+  justiceSystem_ASC
+  justiceSystem_DESC
+  language_ASC
+  language_DESC
+  lawType_ASC
+  lawType_DESC
+  linkedAt_ASC
+  linkedAt_DESC
+  ministry_ASC
+  ministry_DESC
+  permalink_ASC
+  permalink_DESC
+  publicationDate_ASC
+  publicationDate_DESC
+  published_ASC
+  published_DESC
+  scrapedAt_ASC
+  scrapedAt_DESC
+  shortName_ASC
+  shortName_DESC
+  slug_ASC
+  slug_DESC
+  title_ASC
+  title_DESC
+  uid_ASC
+  uid_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  url_ASC
+  url_DESC
+}
+
+type LawPreviousValues {
+  altTitle: String
+  altSlug: String
+  createdAt: DateTime!
+  historic: Boolean!
+  id: ID!
+  indexedAt: DateTime
+  isSearchable: Boolean!
+  justiceSystem: JusticeSystemEnum!
+  language: LanguageEnum!
+  lawType: LawType
+  linkedAt: DateTime
+  ministry: String
+  permalink: String
+  publicationDate: DateTime
+  published: Boolean!
+  scrapedAt: DateTime
+  shortName: String!
+  slug: String!
+  title: String!
+  uid: String!
+  updatedAt: DateTime!
+  url: String!
+}
+
+type LawSubscriptionPayload {
+  mutation: MutationType!
+  node: Law
+  updatedFields: [String!]
+  previousValues: LawPreviousValues
+}
+
+input LawSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: LawWhereInput
+  AND: [LawSubscriptionWhereInput!]
+  OR: [LawSubscriptionWhereInput!]
+  NOT: [LawSubscriptionWhereInput!]
+}
+
+enum LawType {
+  ANORDNING
+  BEKENDTGOERELSE
+  CIRKULAERE
+  CIRKULAERESKRIVELSE
+  IKRAFTTRAEDELSESBEKENDTGOERELSE
+  LOV
+  LOVBEKENDTGOERELSE
+  AENDRINGSLOV
+  VEJLEDNING
+}
+
+input LawUpdateInput {
+  altTitle: String
+  altSlug: String
+  historic: Boolean
+  indexedAt: DateTime
+  isSearchable: Boolean
+  justiceSystem: JusticeSystemEnum
+  language: LanguageEnum
+  lawBasedOnLaw: LawUpdateManyWithoutLawIsBaseForLawInput
+  lawIsBaseForLaw: LawUpdateManyWithoutLawBasedOnLawInput
+  lawType: LawType
+  linkedAt: DateTime
+  ministry: String
+  permalink: String
+  publicationDate: DateTime
+  published: Boolean
+  scrapedAt: DateTime
+  shortName: String
+  slug: String
+  title: String
+  uid: String
+  url: String
+}
+
+input LawUpdateManyWithoutLawBasedOnLawInput {
+  create: [LawCreateWithoutLawBasedOnLawInput!]
+  delete: [LawWhereUniqueInput!]
+  connect: [LawWhereUniqueInput!]
+  disconnect: [LawWhereUniqueInput!]
+  update: [LawUpdateWithWhereUniqueWithoutLawBasedOnLawInput!]
+  upsert: [LawUpsertWithWhereUniqueWithoutLawBasedOnLawInput!]
+}
+
+input LawUpdateManyWithoutLawIsBaseForLawInput {
+  create: [LawCreateWithoutLawIsBaseForLawInput!]
+  delete: [LawWhereUniqueInput!]
+  connect: [LawWhereUniqueInput!]
+  disconnect: [LawWhereUniqueInput!]
+  update: [LawUpdateWithWhereUniqueWithoutLawIsBaseForLawInput!]
+  upsert: [LawUpsertWithWhereUniqueWithoutLawIsBaseForLawInput!]
+}
+
+input LawUpdateWithoutLawBasedOnLawDataInput {
+  altTitle: String
+  altSlug: String
+  historic: Boolean
+  indexedAt: DateTime
+  isSearchable: Boolean
+  justiceSystem: JusticeSystemEnum
+  language: LanguageEnum
+  lawIsBaseForLaw: LawUpdateManyWithoutLawBasedOnLawInput
+  lawType: LawType
+  linkedAt: DateTime
+  ministry: String
+  permalink: String
+  publicationDate: DateTime
+  published: Boolean
+  scrapedAt: DateTime
+  shortName: String
+  slug: String
+  title: String
+  uid: String
+  url: String
+}
+
+input LawUpdateWithoutLawIsBaseForLawDataInput {
+  altTitle: String
+  altSlug: String
+  historic: Boolean
+  indexedAt: DateTime
+  isSearchable: Boolean
+  justiceSystem: JusticeSystemEnum
+  language: LanguageEnum
+  lawBasedOnLaw: LawUpdateManyWithoutLawIsBaseForLawInput
+  lawType: LawType
+  linkedAt: DateTime
+  ministry: String
+  permalink: String
+  publicationDate: DateTime
+  published: Boolean
+  scrapedAt: DateTime
+  shortName: String
+  slug: String
+  title: String
+  uid: String
+  url: String
+}
+
+input LawUpdateWithWhereUniqueWithoutLawBasedOnLawInput {
+  where: LawWhereUniqueInput!
+  data: LawUpdateWithoutLawBasedOnLawDataInput!
+}
+
+input LawUpdateWithWhereUniqueWithoutLawIsBaseForLawInput {
+  where: LawWhereUniqueInput!
+  data: LawUpdateWithoutLawIsBaseForLawDataInput!
+}
+
+input LawUpsertWithWhereUniqueWithoutLawBasedOnLawInput {
+  where: LawWhereUniqueInput!
+  update: LawUpdateWithoutLawBasedOnLawDataInput!
+  create: LawCreateWithoutLawBasedOnLawInput!
+}
+
+input LawUpsertWithWhereUniqueWithoutLawIsBaseForLawInput {
+  where: LawWhereUniqueInput!
+  update: LawUpdateWithoutLawIsBaseForLawDataInput!
+  create: LawCreateWithoutLawIsBaseForLawInput!
+}
+
+input LawWhereInput {
+  altTitle: String
+  altTitle_not: String
+  altTitle_in: [String!]
+  altTitle_not_in: [String!]
+  altTitle_lt: String
+  altTitle_lte: String
+  altTitle_gt: String
+  altTitle_gte: String
+  altTitle_contains: String
+  altTitle_not_contains: String
+  altTitle_starts_with: String
+  altTitle_not_starts_with: String
+  altTitle_ends_with: String
+  altTitle_not_ends_with: String
+  altSlug: String
+  altSlug_not: String
+  altSlug_in: [String!]
+  altSlug_not_in: [String!]
+  altSlug_lt: String
+  altSlug_lte: String
+  altSlug_gt: String
+  altSlug_gte: String
+  altSlug_contains: String
+  altSlug_not_contains: String
+  altSlug_starts_with: String
+  altSlug_not_starts_with: String
+  altSlug_ends_with: String
+  altSlug_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  historic: Boolean
+  historic_not: Boolean
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  indexedAt: DateTime
+  indexedAt_not: DateTime
+  indexedAt_in: [DateTime!]
+  indexedAt_not_in: [DateTime!]
+  indexedAt_lt: DateTime
+  indexedAt_lte: DateTime
+  indexedAt_gt: DateTime
+  indexedAt_gte: DateTime
+  isSearchable: Boolean
+  isSearchable_not: Boolean
+  justiceSystem: JusticeSystemEnum
+  justiceSystem_not: JusticeSystemEnum
+  justiceSystem_in: [JusticeSystemEnum!]
+  justiceSystem_not_in: [JusticeSystemEnum!]
+  language: LanguageEnum
+  language_not: LanguageEnum
+  language_in: [LanguageEnum!]
+  language_not_in: [LanguageEnum!]
+  lawBasedOnLaw_every: LawWhereInput
+  lawBasedOnLaw_some: LawWhereInput
+  lawBasedOnLaw_none: LawWhereInput
+  lawIsBaseForLaw_every: LawWhereInput
+  lawIsBaseForLaw_some: LawWhereInput
+  lawIsBaseForLaw_none: LawWhereInput
+  lawType: LawType
+  lawType_not: LawType
+  lawType_in: [LawType!]
+  lawType_not_in: [LawType!]
+  linkedAt: DateTime
+  linkedAt_not: DateTime
+  linkedAt_in: [DateTime!]
+  linkedAt_not_in: [DateTime!]
+  linkedAt_lt: DateTime
+  linkedAt_lte: DateTime
+  linkedAt_gt: DateTime
+  linkedAt_gte: DateTime
+  ministry: String
+  ministry_not: String
+  ministry_in: [String!]
+  ministry_not_in: [String!]
+  ministry_lt: String
+  ministry_lte: String
+  ministry_gt: String
+  ministry_gte: String
+  ministry_contains: String
+  ministry_not_contains: String
+  ministry_starts_with: String
+  ministry_not_starts_with: String
+  ministry_ends_with: String
+  ministry_not_ends_with: String
+  permalink: String
+  permalink_not: String
+  permalink_in: [String!]
+  permalink_not_in: [String!]
+  permalink_lt: String
+  permalink_lte: String
+  permalink_gt: String
+  permalink_gte: String
+  permalink_contains: String
+  permalink_not_contains: String
+  permalink_starts_with: String
+  permalink_not_starts_with: String
+  permalink_ends_with: String
+  permalink_not_ends_with: String
+  publicationDate: DateTime
+  publicationDate_not: DateTime
+  publicationDate_in: [DateTime!]
+  publicationDate_not_in: [DateTime!]
+  publicationDate_lt: DateTime
+  publicationDate_lte: DateTime
+  publicationDate_gt: DateTime
+  publicationDate_gte: DateTime
+  published: Boolean
+  published_not: Boolean
+  scrapedAt: DateTime
+  scrapedAt_not: DateTime
+  scrapedAt_in: [DateTime!]
+  scrapedAt_not_in: [DateTime!]
+  scrapedAt_lt: DateTime
+  scrapedAt_lte: DateTime
+  scrapedAt_gt: DateTime
+  scrapedAt_gte: DateTime
+  shortName: String
+  shortName_not: String
+  shortName_in: [String!]
+  shortName_not_in: [String!]
+  shortName_lt: String
+  shortName_lte: String
+  shortName_gt: String
+  shortName_gte: String
+  shortName_contains: String
+  shortName_not_contains: String
+  shortName_starts_with: String
+  shortName_not_starts_with: String
+  shortName_ends_with: String
+  shortName_not_ends_with: String
+  slug: String
+  slug_not: String
+  slug_in: [String!]
+  slug_not_in: [String!]
+  slug_lt: String
+  slug_lte: String
+  slug_gt: String
+  slug_gte: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  uid: String
+  uid_not: String
+  uid_in: [String!]
+  uid_not_in: [String!]
+  uid_lt: String
+  uid_lte: String
+  uid_gt: String
+  uid_gte: String
+  uid_contains: String
+  uid_not_contains: String
+  uid_starts_with: String
+  uid_not_starts_with: String
+  uid_ends_with: String
+  uid_not_ends_with: String
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  url: String
+  url_not: String
+  url_in: [String!]
+  url_not_in: [String!]
+  url_lt: String
+  url_lte: String
+  url_gt: String
+  url_gte: String
+  url_contains: String
+  url_not_contains: String
+  url_starts_with: String
+  url_not_starts_with: String
+  url_ends_with: String
+  url_not_ends_with: String
+  AND: [LawWhereInput!]
+  OR: [LawWhereInput!]
+  NOT: [LawWhereInput!]
+}
+
+input LawWhereUniqueInput {
+  id: ID
+  shortName: String
+  slug: String
+  uid: String
+  url: String
+}
+
+scalar Long
+
+type Mutation {
+  createLaw(data: LawCreateInput!): Law!
+  updateLaw(data: LawUpdateInput!, where: LawWhereUniqueInput!): Law
+  updateManyLaws(data: LawUpdateInput!, where: LawWhereInput): BatchPayload!
+  upsertLaw(where: LawWhereUniqueInput!, create: LawCreateInput!, update: LawUpdateInput!): Law!
+  deleteLaw(where: LawWhereUniqueInput!): Law
+  deleteManyLaws(where: LawWhereInput): BatchPayload!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+interface Node {
+  id: ID!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type Query {
+  law(where: LawWhereUniqueInput!): Law
+  laws(where: LawWhereInput, orderBy: LawOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Law]!
+  lawsConnection(where: LawWhereInput, orderBy: LawOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LawConnection!
+  node(id: ID!): Node
+}
+
+type Subscription {
+  law(where: LawSubscriptionWhereInput): LawSubscriptionPayload
+}
+`
