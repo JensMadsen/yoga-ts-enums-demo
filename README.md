@@ -1,4 +1,6 @@
 # how
+- `yarn`
+- `yarn prisma deploy` 
+- `yarn build` 
+- If you have no resolvers yet copy the generated resolvers in generated/tmp-resolvers into src/resolvers and change the paths in the import statements
 - `yarn start`
-- since post-deploy hook in prisma.yml is not working even though is signals tha tit does run: `yarn  graphql get-schema --project prisma` 
-- `yarn build` -> which fails
