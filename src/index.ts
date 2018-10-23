@@ -5,17 +5,11 @@ require('dotenv').config()
 //import { cors } from 'cors'
 
 
-let debug
-if (process.env.PRISMA_DEBUG.toLowerCase() === 'true') {
-    debug = true
-} else {
-    debug = true
-}
 
 const prisma = new Prisma({
     endpoint: 'http://localhost:4466',
     secret: 'penis',
-    debug: debug,
+    debug: true,
 })
 
 const server = new GraphQLServer({
